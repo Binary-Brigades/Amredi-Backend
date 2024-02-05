@@ -36,16 +36,37 @@ exports.Register = async (req, res, next) => {
       subject: "Account Verification",
       email: data.email,
     });
+    console.log(mailResponse)
     data.code = code;
     const user = new userModel(data);
-    const savedUser = await user.save()
+    await user.save();
 
     return res.status(200).json({
-      "status": "success",
-      "message": "user registerd successfully"
-    }
-    );
+      status: "success",
+      message: "user registerd successfully",
+    });
   } catch (error) {
     next(error);
   }
 };
+
+exports.verifyAccount = async(req, res, next) =>{
+  try {
+    const {code }= req.body
+    if(!code){
+      throw createError.BadRequest("verification code required")
+    }
+    const user = await userModel.findOne({code: code})
+    if(!user){
+      throw createError.Unauthorized("Invalid code")
+    }
+    await userModel.findOneAndUpdate({code: code},{"$set": {"verified": true}}, {new: true})
+    // {new: true} -> returns the updated version of the document
+    return res.status(202).json({
+      "status": "success. account verified successfully"
+    })
+  } catch (error) {
+    next(error)
+    
+  }
+}
