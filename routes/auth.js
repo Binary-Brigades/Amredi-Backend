@@ -1,7 +1,7 @@
 const router = require("express").Router()
 const { Register } = require("../controllers/auth")
 
-router.get("/auth/register", Register)
+router.post("/auth/register", Register)
 
 
 module.exports = { router}
