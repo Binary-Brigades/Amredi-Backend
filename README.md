@@ -6,7 +6,7 @@
 
 ## Registration
 **request**
-* url:   /api/v1/auth/register
+* url: amredi-backend.vercel.app/api/v1/auth/register
 * method: POST
 * request body:
    ```
@@ -20,13 +20,13 @@
 **response**
 - status code: `201` if success else `400`
 - response body: 
-   ```json
-      status: "success",
-      message: "user registerd successfully",
-   ```
+```json
+   status: "success",
+   message: "user registerd successfully",
+```
 ## Account verification
 **request**
-* url:   /api/v1/auth/verify-account
+* url:   amredi-backend.vercel.app/api/v1/auth/verify-account
 * method: POST
 * request body:
    ```
@@ -35,7 +35,7 @@
 **response**
 - status code: `202` if success else `401`
 - response body: 
-   ```json
-      status: "success. account verified successfully",
-   ```
+```json
+   status: "success. account verified successfully",
+```
 
