@@ -2,6 +2,8 @@ const express = require("express");
 const logger = require("morgan");
 const dotenv = require("dotenv");
 const createError = require("http-errors");
+const { router } = require("./routes/auth");
+require("./helpers/mongoDBHelper");
 
 dotenv.config();
 const app = express();
@@ -17,6 +19,7 @@ app.get("/", async (req, res) => {
   });
 });
 
+app.use("/api/v1", router)
 // error handling
 app.use(async (req, res, next) => {
   const error = createError.NotFound("The page does not exist");
