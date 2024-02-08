@@ -54,3 +54,17 @@
    "status": "success",
    "access_token": "<user access token >",
 ```
+
+## Get Profile
+> **request**
+- url: amredi-backend.vercel.app/api/v1/user/profile
+- method: GET
+
+> **response**
+- status code: `200`
+- response body: 
+```json
+   "first_name": "maich",
+   "last_name": "magode",
+   "email": "mainamaich@gmail.com",
+```
