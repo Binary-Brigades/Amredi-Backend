@@ -10,7 +10,7 @@ require("./helpers/mongoDBHelper");
 dotenv.config();
 const app = express();
 
-// middlewares
+// middlewares 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(logger("dev"));
