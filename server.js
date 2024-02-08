@@ -24,6 +24,7 @@ app.get("/", async (req, res) => {
 
 app.use("/api/v1", authRouter)
 app.use("/api/v1", userRouter)
+
 // error handling
 app.use(async (req, res, next) => {
   const error = createError.NotFound("The page does not exist");
