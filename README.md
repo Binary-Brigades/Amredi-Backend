@@ -21,8 +21,8 @@
 - status code: `201` if success else `400`
 - response body: 
 ```json
-   status: "success",
-   message: "user registerd successfully",
+   "status": "success",
+   "message": "user registerd successfully",
 ```
 ## Account verification
 >**request**
@@ -36,7 +36,7 @@
 - status code: `202` if success else `401`
 - response body: 
 ```json
-   status: "success. account verified successfully",
+   "status": "success. account verified successfully",
 ```
 ##  Login
 > **request**
@@ -51,6 +51,6 @@
 - status code: `200` if success else `401`
 - response body: 
 ```json
-   status: "success",
-   access_token: "<user access token >",
+   "status": "success",
+   "access_token": "<user access token >",
 ```
