@@ -68,3 +68,27 @@
    "last_name": "magode",
    "email": "mainamaich@gmail.com",
 ```
+
+
+## Edit Profile
+> **request**
+- url: amredi-backend.vercel.app/api/v1/user/edit-profile
+- method: POST
+* request body:
+   ```
+   first_name: string optional 
+   last_name: string optional
+   email: string optional
+   phone_number: string optional -> should start with country code 
+   password: string optional
+   confirm_password: ref(password)
+   ```
+
+> **response**
+- status code: `200`
+- response body: 
+```json
+   "first_name": "maich",
+   "last_name": "magode",
+   "email": "mainamaich@gmail.com",
+```
