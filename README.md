@@ -5,7 +5,7 @@
 </div>
 
 ## Registration
-**request**
+>**request**
 * url: amredi-backend.vercel.app/api/v1/auth/register
 * method: POST
 * request body:
@@ -17,7 +17,7 @@
    password: string
    confirm_password: ref(password)
    ```
-**response**
+>**response**
 - status code: `201` if success else `400`
 - response body: 
 ```json
@@ -25,17 +25,32 @@
    message: "user registerd successfully",
 ```
 ## Account verification
-**request**
+>**request**
 * url:   amredi-backend.vercel.app/api/v1/auth/verify-account
 * method: POST
 * request body:
    ```
    code: string
    ```
-**response**
+>**response**
 - status code: `202` if success else `401`
 - response body: 
 ```json
    status: "success. account verified successfully",
 ```
-
+##  Login
+> **request**
+- url: amredi-backend.vercel.app/api/v1/auth/login
+- method: POST
+- request body:
+   ```json
+   email: string
+   password: string
+   ```
+> **response**
+- status code: `200` if success else `401`
+- response body: 
+```json
+   status: "success",
+   access_token: "<user access token >",
+```
