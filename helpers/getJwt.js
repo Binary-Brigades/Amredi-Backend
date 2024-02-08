@@ -25,4 +25,31 @@ const generateAccessToken = async (data) => {
   });
 };
 
-module.exports = { generateAccessToken }
+const verifyAccessToken = (req, res, next) => {
+  const headers = req.headers.authorization;
+  if (!headers) {
+    const error = createError.Unauthorized();
+    next(error);
+  }
+  try {
+    const token = headers.split(" ")[1];
+    if (!token) {
+      throw createError.Unauthorized();
+    }
+    jwt.verify(token, process.env.AccessTokenSecretKey, (error, payload) => {
+      if (error) {
+        if (error.name === "JsonWebToken") {
+          throw createError.Unauthorized();
+        } else {
+          throw createError.Unauthorized(error.message);
+        }
+      }
+      req.payload = payload;
+      next();
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { generateAccessToken, verifyAccessToken }

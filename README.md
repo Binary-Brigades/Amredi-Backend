@@ -21,8 +21,8 @@
 - status code: `201` if success else `400`
 - response body: 
 ```json
-   status: "success",
-   message: "user registerd successfully",
+   "status": "success",
+   "message": "user registerd successfully",
 ```
 ## Account verification
 >**request**
@@ -36,7 +36,7 @@
 - status code: `202` if success else `401`
 - response body: 
 ```json
-   status: "success. account verified successfully",
+   "status": "success. account verified successfully",
 ```
 ##  Login
 > **request**
@@ -51,6 +51,44 @@
 - status code: `200` if success else `401`
 - response body: 
 ```json
-   status: "success",
-   access_token: "<user access token >",
+   "status": "success",
+   "access_token": "<user access token >",
+```
+
+## Get Profile
+> **request**
+- url: amredi-backend.vercel.app/api/v1/user/profile
+- method: GET
+
+> **response**
+- status code: `200`
+- response body: 
+```json
+   "first_name": "maich",
+   "last_name": "magode",
+   "email": "mainamaich@gmail.com",
+```
+
+
+## Edit Profile
+> **request**
+- url: amredi-backend.vercel.app/api/v1/user/edit-profile
+- method: POST
+* request body:
+   ```
+   first_name: string optional 
+   last_name: string optional
+   email: string optional
+   phone_number: string optional -> should start with country code 
+   password: string optional
+   confirm_password: ref(password)
+   ```
+
+> **response**
+- status code: `200`
+- response body: 
+```json
+   "first_name": "maich",
+   "last_name": "magode",
+   "email": "mainamaich@gmail.com",
 ```

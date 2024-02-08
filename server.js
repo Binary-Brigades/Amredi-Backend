@@ -3,7 +3,8 @@ const logger = require("morgan");
 const dotenv = require("dotenv");
 const cors = require("cors")
 const createError = require("http-errors");
-const { router } = require("./routes/auth");
+const { authRouter } = require("./routes/auth");
+const { userRouter } = require("./routes/user");
 require("./helpers/mongoDBHelper");
 
 dotenv.config();
@@ -21,7 +22,8 @@ app.get("/", async (req, res) => {
   });
 });
 
-app.use("/api/v1", router)
+app.use("/api/v1", authRouter)
+app.use("/api/v1", userRouter)
 // error handling
 app.use(async (req, res, next) => {
   const error = createError.NotFound("The page does not exist");
