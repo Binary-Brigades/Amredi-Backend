@@ -19,7 +19,7 @@
       gmailUser = [ your email adress]
       gmailPass = [ your gmail password]
       AccessTokenSecretKey = [random string ]
-      AccessTokenExpires = [the time before which the access token should expire eg 1h or 1d or 7d]
+      AccessTokenExpires = [the time before which the access token should expire eg 1h or 1d or 7d] 
       ```
 
 ## Registration
@@ -69,8 +69,8 @@
 - method: POST
 - request body:
    ```json
-   email: string
-   password: string
+   "email": "string"
+   "password": "string"
    ```
 > **response**
 - status code: `200` if success else `401`
