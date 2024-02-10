@@ -4,18 +4,43 @@
 <p> The backend api for the Amredi mobile application </p>
 </div>
 
+## Getting started 
+1. clone the respository
+   ```shell
+   $ git clone https://github.com/Binary-Brigades/Amredi-Backend.git
+   $ cd Amredi-Backend
+   $ touch .env
+   ```  
+2. Add the following variables to the .env file
+      ```
+      PORT = [port your that your will run on]
+      mongoDbUrl = [mongodburl]
+      mongoDbName = [name of the database]
+      gmailUser = [ your email adress]
+      gmailPass = [ your gmail password]
+      AccessTokenSecretKey = [random string ]
+      AccessTokenExpires = [the time before which the access token should expire eg 1h or 1d or 7d] 
+      ```
+
 ## Registration
 >**request**
 * url: amredi-backend.vercel.app/api/v1/auth/register
 * method: POST
-* request body:
-   ```
-   first_name: string
-   last_name: string
-   email: string
-   phone_number: string -> should start with country code 
-   password: string
-   confirm_password: ref(password)
+* example of a request body:
+   ```json
+   {
+  "first_name": "Antony",
+  "last_name": "Kariuki",
+  "email": "antonygichoya1@gmail.com",
+  "password": "password",
+  "phone_number": "+25474359612",
+  "location":{
+    "type": "Point",
+    "coordinates": [-74.0060, 40.7128]
+  },
+  "confirm_password": "password"
+  
+  }
    ```
 >**response**
 - status code: `201` if success else `400`
@@ -44,8 +69,8 @@
 - method: POST
 - request body:
    ```json
-   email: string
-   password: string
+   "email": "string"
+   "password": "string"
    ```
 > **response**
 - status code: `200` if success else `401`
