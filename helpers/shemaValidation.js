@@ -10,4 +10,8 @@ exports.registerSchema = joi.object({
   password: joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")).required(),
   phone_number: joi.string().required(),
   confirm_password: joi.ref("password"),
+  location: joi.object().keys({
+    type: joi.string().required(),
+    coordinates: joi.array().items(joi.number().required())
+  })
 });

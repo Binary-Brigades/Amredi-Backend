@@ -1,5 +1,20 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+
+const geoSchema = mongoose.Schema({
+  type: {
+    type: String,
+    required: true,
+    enum: ["Point", "LineString", "Polygon"],
+    default: "Point"
+  },
+  coordinates:{
+    type: [Number],
+    required: true,
+    index: "2dsphere"
+  }
+})
+
 const userSchema = new mongoose.Schema({
   first_name: {
     type: String,
@@ -27,6 +42,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  location: geoSchema,
   verified: {
     type: Boolean,
     default: false

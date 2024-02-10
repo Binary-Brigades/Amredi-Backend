@@ -8,14 +8,21 @@
 >**request**
 * url: amredi-backend.vercel.app/api/v1/auth/register
 * method: POST
-* request body:
-   ```
-   first_name: string
-   last_name: string
-   email: string
-   phone_number: string -> should start with country code 
-   password: string
-   confirm_password: ref(password)
+* example of a request body:
+   ```json
+   {
+  "first_name": "Antony",
+  "last_name": "Kariuki",
+  "email": "antonygichoya1@gmail.com",
+  "password": "password",
+  "phone_number": "+25474359612",
+  "location":{
+    "type": "Point",
+    "coordinates": [-74.0060, 40.7128]
+  },
+  "confirm_password": "password"
+  
+  }
    ```
 >**response**
 - status code: `201` if success else `400`
