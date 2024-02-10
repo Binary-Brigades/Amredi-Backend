@@ -4,6 +4,24 @@
 <p> The backend api for the Amredi mobile application </p>
 </div>
 
+## Getting started 
+1. clone the respository
+   ```shell
+   $ git clone https://github.com/Binary-Brigades/Amredi-Backend.git
+   $ cd Amredi-Backend
+   $ touch .env
+   ```  
+2. Add the following variables to the .env file
+      ```
+      PORT = [port your that your will run on]
+      mongoDbUrl = [mongodburl]
+      mongoDbName = [name of the database]
+      gmailUser = [ your email adress]
+      gmailPass = [ your gmail password]
+      AccessTokenSecretKey = [random string ]
+      AccessTokenExpires = [the time before which the access token should expire eg 1h or 1d or 7d]
+      ```
+
 ## Registration
 >**request**
 * url: amredi-backend.vercel.app/api/v1/auth/register
