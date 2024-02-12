@@ -28,17 +28,17 @@ exports.Register = async (req, res, next) => {
       throw createError.Conflict(`${data.phone_number} already taken`);
     }
     const code = generatePassword(4);
-    // const message = `
-    // <h1>Hello ${data.first_name}</h1><h3>Thank you for registering an account with Amredi</h3>
-    // <p>Use the code below to verify your account</p>
-    // <h4><bold>${code}</bold></h4>
-    // `;
-    // const mailResponse = await sendMail({
-    //   html: message,
-    //   subject: "Account Verification",
-    //   email: data.email,
-    // });
-    // console.log(mailResponse);
+    const message = `
+    <h1>Hello ${data.first_name}</h1><h3>Thank you for registering an account with Amredi</h3>
+    <p>Use the code below to verify your account</p>
+    <h4><bold>${code}</bold></h4>
+    `;
+    const mailResponse = await sendMail({
+      html: message,
+      subject: "Account Verification",
+      email: data.email,
+    });
+    console.log(mailResponse);
     data.code = code;
     const user = new userModel(data);
     await user.save();
