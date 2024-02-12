@@ -6,14 +6,14 @@ const geoSchema = mongoose.Schema({
     type: String,
     required: true,
     enum: ["Point", "LineString", "Polygon"],
-    default: "Point"
+    default: "Point",
   },
-  coordinates:{
+  coordinates: {
     type: [Number],
     required: true,
-    index: "2dsphere"
-  }
-})
+    index: "2dsphere",
+  },
+});
 
 const userSchema = new mongoose.Schema({
   first_name: {
@@ -40,17 +40,17 @@ const userSchema = new mongoose.Schema({
   },
   code: {
     type: String,
-    required: true
+    required: true,
   },
   location: geoSchema,
   verified: {
     type: Boolean,
-    default: false
+    default: false,
   },
   joined: {
     type: Date,
-    default: Date.now()
-  }
+    default: Date.now(),
+  },
 });
 
 userSchema.pre("save", async function () {
@@ -58,8 +58,8 @@ userSchema.pre("save", async function () {
     const saltRounds = 10;
     const salt = await bcrypt.genSalt(saltRounds);
     const hash = await bcrypt.hash(this.password, salt);
-    this.password = hash
+    this.password = hash;
   }
 });
 
-exports.userModel = mongoose.model("User", userSchema)
+exports.userModel = mongoose.model("User", userSchema);

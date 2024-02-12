@@ -90,17 +90,17 @@ exports.login = async (req, res, next) => {
     if (!match) {
       throw createError.Unauthorized("invalid email or password ");
     }
-    if(!exist_user.verified){
-      throw createError.Unauthorized("please verify your account")
+    if (!exist_user.verified) {
+      throw createError.Unauthorized("please verify your account");
     }
     const token = await generateAccessToken({
       email: email,
-      userID: exist_user.id
-    })
+      userID: exist_user.id,
+    });
     return res.status(200).json({
       status: "success",
-      access_token: token
-    })
+      access_token: token,
+    });
   } catch (error) {
     next(error);
   }
