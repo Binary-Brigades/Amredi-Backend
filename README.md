@@ -176,7 +176,7 @@ json
    description,
    image: {
         publicId: result.public_id,
-        url: result.secure_url,
+        url: result.secure_url, -> live link from cloudinary
       },
    createdBy: user._id,
 ```

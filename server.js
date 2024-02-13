@@ -5,19 +5,10 @@ const cors = require("cors");
 const createError = require("http-errors");
 const { authRouter } = require("./routes/auth");
 const { userRouter } = require("./routes/user");
-const postRoutes = require("./routes/post");
+const { postRoutes } = require("./routes/post");
 require("./helpers/mongoDBHelper");
-const cloudinary = require("cloudinary").v2;
 const multer = require("multer");
 const upload = multer();
-
-// Configure Cloudinary
-// cloudinary.config({
-//   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-//   api_key: process.env.CLOUDINARY_API_KEY,
-//   api_secret: process.env.CLOUDINARY_API_SECRET,
-// });
-
 dotenv.config();
 const app = express();
 
