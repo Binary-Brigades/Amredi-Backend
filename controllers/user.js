@@ -1,5 +1,6 @@
 const { userModel } = require("../models/userModel");
 const { hashPassword } = require("../utils/hashPassword");
+const { formatUserData } = require("../utils/utils");
 
 exports.userProfile = async (req, res, next) => {
   const user = await userModel.findById(req.payload.aud);
@@ -29,8 +30,12 @@ exports.connect = async (req, res, next) => {
     const userID = req.payload.aud;
     const user = await userModel.findById(userID);
     const location = user.location;
-    console.log(location);
-    return res.status(200).json(user);
+    const data = await formatUserData(
+      process.env.maxDistance,
+      location,
+      user.userID
+    )
+    return res.status(200).json(data);
   } catch (error) {
     next(error);
   }
