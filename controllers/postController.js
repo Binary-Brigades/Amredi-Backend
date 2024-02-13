@@ -71,7 +71,7 @@ exports.getAllPosts = async (req, res) => {
 exports.likePost = async (req, res) => {
   try {
     const postId = req.params.postId;
-    const userId = req.payload.aud; // Assuming you have user ID in req.payload
+    const userId = req.payload.aud; // user ID in req.payload
 
     // Check if the post exists
     const post = await Post.findById(postId);
@@ -97,6 +97,32 @@ exports.likePost = async (req, res) => {
     res.status(200).json({ message: "Post liked successfully", numberOfLikes });
   } catch (error) {
     console.error("Error liking post:", error);
+    res.status(500).json({ error: "Error liking post" });
+  }
+};
+
+// get all likes from a post
+exports.getPostLikes = async (req, res) => {
+  try {
+    const postId = req.params.postId;
+    const userId = req.payload.aud; // user ID in req.payload
+
+    // Check if the post exists
+    const post = await Post.findById(postId);
+    if (!post) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+    // Get number of likes on the post
+    const updatedPost = await Post.findById(postId).populate("likes");
+    const numberOfLikes = updatedPost.likes.length;
+
+    const postLikes = {
+      postId: postId,
+      numberOfLikes: numberOfLikes,
+    };
+    res.status(200).json({ postLikes });
+  } catch (error) {
+    console.error("Error getting likes:", error);
     res.status(500).json({ error: "Error liking post" });
   }
 };
