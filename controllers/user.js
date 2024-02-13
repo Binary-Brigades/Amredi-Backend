@@ -12,10 +12,26 @@ exports.userProfile = async (req, res, next) => {
 };
 
 exports.editProfile = async (req, res, next) => {
-   const data = req.body
-   if("password" in data){
-      data.password = await hashPassword(data.password)
-   }
-  const user = await userModel.findByIdAndUpdate(req.payload.aud, {"$set": data}, {new: true});
+  const data = req.body;
+  if ("password" in data) {
+    data.password = await hashPassword(data.password);
+  }
+  const user = await userModel.findByIdAndUpdate(
+    req.payload.aud,
+    { $set: data },
+    { new: true }
+  );
   return res.status(200).json(user);
+};
+
+exports.connect = async (req, res, next) => {
+  try {
+    const userID = req.payload.aud;
+    const user = await userModel.findById(userID);
+    const location = user.location;
+    console.log(location);
+    return res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
 };
