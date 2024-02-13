@@ -7,5 +7,11 @@ const { verifyAccessToken } = require("../helpers/getJwt");
 postRouter.get("/post/getall", verifyAccessToken, postController.getAllPosts);
 // Create a new post
 postRouter.post("/post/create", verifyAccessToken, postController.createPost);
+// like a post
+postRouter.post(
+  "/posts/:postId/like",
+  verifyAccessToken,
+  postController.likePost
+);
 
 module.exports = { postRouter };
