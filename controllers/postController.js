@@ -8,6 +8,7 @@ cloudinary.config({
 });
 
 exports.createPost = async (req, res) => {
+  console.log(req.payload);
   try {
     const imageFile = req.files[0]; // Assuming only one file is uploaded
     if (!imageFile) {
