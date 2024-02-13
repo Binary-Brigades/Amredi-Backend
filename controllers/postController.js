@@ -1,6 +1,6 @@
 const cloudinary = require("cloudinary").v2;
 const { Post } = require("../models/postModel");
-
+const { userModel } = require("../models/userModel");
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -8,13 +8,19 @@ cloudinary.config({
 });
 
 exports.createPost = async (req, res) => {
-  console.log(req.payload);
+  console.log(req.payload.aud);
+  // const createdBy = req.payload.aud;
   try {
     const imageFile = req.files[0]; // Assuming only one file is uploaded
     if (!imageFile) {
       return res.status(400).json({ error: "No file uploaded" });
     }
-
+    // Query the database to retrieve user information
+    const user = await userModel.findById(req.payload.aud);
+    console.log(user);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
     // Access other form fields from req.body
     const { title, description } = req.body;
 
@@ -37,6 +43,7 @@ exports.createPost = async (req, res) => {
         publicId: result.public_id,
         url: result.secure_url,
       },
+      createdBy: user._id,
     });
 
     res.status(201).json({
