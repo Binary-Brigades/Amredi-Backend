@@ -7,6 +7,12 @@ const { verifyAccessToken } = require("../helpers/getJwt");
 postRouter.get("/post/getall", verifyAccessToken, postController.getAllPosts);
 // Create a new post
 postRouter.post("/post/create", verifyAccessToken, postController.createPost);
+// get likes from a post
+postRouter.get(
+  "/post/:postId/getlikes",
+  verifyAccessToken,
+  postController.getPostLikes
+);
 // like a post
 postRouter.post(
   "/post/:postId/like",
