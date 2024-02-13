@@ -1,48 +1,49 @@
+const cloudinary = require("cloudinary").v2;
+const { Post } = require("../models/postModel");
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
 exports.createPost = async (req, res) => {
   try {
-    const { title, description, images } = req.body;
-    const createdBy = req.user.id;
+    const imageFile = req.files[0]; // Assuming only one file is uploaded
+    if (!imageFile) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
 
-    // Upload images to Cloudinary and store public IDs
-    const imageUploads = images.map(async (image) => {
-      const result = await cloudinary.uploader.upload(image, {
+    // Access other form fields from req.body
+    const { title, description } = req.body;
+
+    // Convert image buffer to Base64 string
+    const imageBuffer = imageFile.buffer.toString("base64");
+
+    // Upload the image to Cloudinary as Base64 string
+    const result = await cloudinary.uploader.upload(
+      `data:${imageFile.mimetype};base64,${imageBuffer}`,
+      {
         folder: "amredi",
-      });
-      return { publicId: result.public_id, url: result.secure_url };
-    });
+      }
+    );
 
-    const uploadedImages = await Promise.all(imageUploads);
-
-    // Create the post with image public IDs
+    // Create the post with the uploaded image URL
     const post = await Post.create({
       title,
       description,
-      images: uploadedImages,
-      createdBy,
+      image: {
+        publicId: result.public_id,
+        url: result.secure_url,
+      },
     });
 
-    res.status(201).json(post);
+    res.status(201).json({
+      message: "Post created successfully",
+      post,
+    });
   } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
-
-exports.getPosts = async (req, res) => {
-  try {
-    // Fetch posts from the database
-    const posts = await Post.find();
-
-    // Return posts with correct image URLs
-    const postsWithImages = posts.map((post) => ({
-      ...post.toObject(),
-      images: post.images.map((image) => ({
-        ...image,
-        url: `YOUR_CLOUDINARY_BASE_URL/${image.publicId}`, // Construct image URL using public ID
-      })),
-    }));
-
-    res.json(postsWithImages);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error("Error creating post:", error);
+    res.status(500).json({ error: "Error creating post" });
   }
 };
