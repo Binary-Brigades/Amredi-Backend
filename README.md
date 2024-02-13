@@ -235,12 +235,41 @@ json
 ]
 ```
 
-### like a post
+## Like a Post
 
 > **request**
 
 - url: amredi-backend.vercel.app/api/v1/post/:postId/like
 - method: POST
+
+* request headers:
+
+  ```
+   Accept: "application/json",
+   authorization: `Bearer token`,
+
+  ```
+
+> **response**
+
+- status code: `201`
+- response body:
+
+```
+json
+{
+  "message": "Post liked successfully",
+  "numberOfLikes": 1
+}
+
+```
+
+## Get All Likes From A Post
+
+> **request**
+
+- url: amredi-backend.vercel.app/api/v1/post/:postId/getlikes
+- method: GET
 
 * request headers:
 
@@ -258,8 +287,10 @@ json
 ```
 json
 {
-  "message": "Post liked successfully",
-  "numberOfLikes": 1
+  "postLikes": {
+    "postId": "65cb73f93a4fa55962650101",
+    "numberOfLikes": 1
+  }
 }
 
 ```
