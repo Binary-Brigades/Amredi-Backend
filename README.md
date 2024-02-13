@@ -144,7 +144,7 @@
 
 > **request**
 
-- url: amredi-backend.vercel.app/api/v1/post
+- url: amredi-backend.vercel.app/api/v1/post/create
 - method: POST
 
 * request headers:

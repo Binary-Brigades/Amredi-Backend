@@ -5,7 +5,7 @@ const cors = require("cors");
 const createError = require("http-errors");
 const { authRouter } = require("./routes/auth");
 const { userRouter } = require("./routes/user");
-const { postRoutes } = require("./routes/post");
+const { postRouter } = require("./routes/post");
 require("./helpers/mongoDBHelper");
 const multer = require("multer");
 const upload = multer();
@@ -27,7 +27,7 @@ app.get("/", async (req, res) => {
 
 app.use("/api/v1", authRouter);
 app.use("/api/v1", userRouter);
-app.use("/api/v1", postRoutes);
+app.use("/api/v1", postRouter);
 
 // error handling
 app.use(async (req, res, next) => {
