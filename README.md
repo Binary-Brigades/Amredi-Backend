@@ -234,3 +234,32 @@ json
   }
 ]
 ```
+
+### like a post
+
+> **request**
+
+- url: amredi-backend.vercel.app/api/v1/post/:postId/like
+- method: POST
+
+* request headers:
+
+  ```
+   Accept: "application/json",
+   authorization: `Bearer token`,
+
+  ```
+
+> **response**
+
+- status code: `200`
+- response body:
+
+```
+json
+{
+  "message": "Post liked successfully",
+  "numberOfLikes": 1
+}
+
+```

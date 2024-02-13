@@ -90,7 +90,11 @@ exports.likePost = async (req, res) => {
     post.likes.push(userId);
     await post.save();
 
-    res.status(200).json({ message: "Post liked successfully" });
+    // Get the updated number of likes on the post
+    const updatedPost = await Post.findById(postId).populate("likes");
+    const numberOfLikes = updatedPost.likes.length;
+
+    res.status(200).json({ message: "Post liked successfully", numberOfLikes });
   } catch (error) {
     console.error("Error liking post:", error);
     res.status(500).json({ error: "Error liking post" });

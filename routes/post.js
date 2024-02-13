@@ -9,7 +9,7 @@ postRouter.get("/post/getall", verifyAccessToken, postController.getAllPosts);
 postRouter.post("/post/create", verifyAccessToken, postController.createPost);
 // like a post
 postRouter.post(
-  "/posts/:postId/like",
+  "/post/:postId/like",
   verifyAccessToken,
   postController.likePost
 );
