@@ -56,10 +56,27 @@ exports.createPost = async (req, res) => {
   }
 };
 
-// Fetch all posts
+// get all posts
 exports.getAllPosts = async (req, res) => {
   try {
     const posts = await Post.find();
+    res.status(200).json(posts);
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    res.status(500).json({ error: "Error fetching posts" });
+  }
+};
+// get post by id
+exports.getPostById = async (req, res) => {
+  try {
+    const postId = req.params.postId;
+    const userId = req.payload.aud; // user ID in req.payload
+
+    // Check if the post exists
+    const post = await Post.findById(postId);
+    if (!post) {
+      return res.status(404).json({ error: "Post not found" });
+    }
     res.status(200).json(posts);
   } catch (error) {
     console.error("Error fetching posts:", error);
