@@ -235,6 +235,45 @@ json
 ]
 ```
 
+### get post by id
+
+## Get All Likes From A Post
+
+> **request**
+
+- url: amredi-backend.vercel.app/api/v1/post/:postId/getpost
+- method: GET
+
+* request params:
+
+  ```
+  postId
+
+  ```
+
+> **response**
+
+- status code: `200`
+- response body:
+
+```
+json
+{
+  "image": {
+    "publicId": "amredi/yh1j84aexj70ofqwnf7e",
+    "url": "https://res.cloudinary.com/dlio7cpjo/image/upload/v1707832530/amredi/yh1j84aexj70ofqwnf7e.jpg"
+  },
+  "_id": "65cb74d2e667544b9bffb02c",
+  "title": "helllo",
+  "description": "helloo",
+  "createdBy": "65c9ef8c05e3670930dc9408",
+  "likes": [],
+  "time": "2024-02-13T13:55:30.637Z",
+  "__v": 0
+}
+
+```
+
 ## Like a Post
 
 > **request**
@@ -244,11 +283,12 @@ json
 
 * request headers:
 
-  ```
-   Accept: "application/json",
-   authorization: `Bearer token`,
+```
 
-  ```
+Accept: "application/json",
+authorization: `Bearer token`,
+
+```
 
 > **response**
 
@@ -256,10 +296,11 @@ json
 - response body:
 
 ```
+
 json
 {
-  "message": "Post liked successfully",
-  "numberOfLikes": 1
+"message": "Post liked successfully",
+"numberOfLikes": 1
 }
 
 ```
@@ -273,11 +314,12 @@ json
 
 * request headers:
 
-  ```
-   Accept: "application/json",
-   authorization: `Bearer token`,
+```
 
-  ```
+Accept: "application/json",
+authorization: `Bearer token`,
+
+```
 
 > **response**
 
@@ -285,12 +327,13 @@ json
 - response body:
 
 ```
+
 json
 {
   "postLikes": {
-    "postId": "65cb73f93a4fa55962650101",
-    "numberOfLikes": 1
-  }
+  "postId": "65cb73f93a4fa55962650101",
+  "numberOfLikes": 1
+}
 }
 
 ```
