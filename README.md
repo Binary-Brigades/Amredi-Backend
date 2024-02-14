@@ -274,6 +274,63 @@ json
 
 ```
 
+### get posts of a given user
+
+> **request**
+
+- url: amredi-backend.vercel.app/api/v1/post/:postId/getpost
+- method: GET
+
+* request headers:
+
+  ```
+   Accept: "application/json",
+   authorization: `Bearer token`,
+
+  ```
+
+  ```
+
+> **response**
+
+- status code: `200`
+- response body:
+
+```
+json
+[
+  {
+    "image": {
+      "publicId": "amredi/hg1znknlzy0jexgpiwvt",
+      "url": "https://res.cloudinary.com/dlio7cpjo/image/upload/v1707832312/amredi/hg1znknlzy0jexgpiwvt.jpg"
+    },
+    "_id": "65cb73f93a4fa55962650101",
+    "title": "hello",
+    "description": "helloo",
+    "createdBy": "65c9ef8c05e3670930dc9408",
+    "likes": [
+      "65c9ef8c05e3670930dc9408"
+    ],
+    "time": "2024-02-13T13:51:53.358Z",
+    "__v": 2
+  },
+  {
+    "image": {
+      "publicId": "amredi/yh1j84aexj70ofqwnf7e",
+      "url": "https://res.cloudinary.com/dlio7cpjo/image/upload/v1707832530/amredi/yh1j84aexj70ofqwnf7e.jpg"
+    },
+    "_id": "65cb74d2e667544b9bffb02c",
+    "title": "helllo",
+    "description": "helloo",
+    "createdBy": "65c9ef8c05e3670930dc9408",
+    "likes": [],
+    "time": "2024-02-13T13:55:30.637Z",
+    "__v": 0
+  }
+]
+
+```
+
 ## Like a Post
 
 > **request**

@@ -83,6 +83,20 @@ exports.getPostById = async (req, res) => {
   }
 };
 
+// get posts by a user
+exports.getPostsByUser = async (req, res) => {
+  try {
+    const userId = req.payload.aud;
+
+    // Find posts by user ID
+    const posts = await Post.find({ createdBy: userId });
+
+    res.status(200).json(posts);
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    res.status(500).json({ error: "Error fetching posts" });
+  }
+};
 // Like a post
 exports.likePost = async (req, res) => {
   try {
