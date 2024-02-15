@@ -4,7 +4,7 @@ const postController = require("../controllers/postController");
 const { verifyAccessToken } = require("../helpers/getJwt");
 
 // get all posts
-postRouter.get("/post/getall", verifyAccessToken, postController.getAllPosts);
+postRouter.get("/post/getall", postController.getAllPosts);
 // get post by id
 postRouter.get("/post/:postId/getpost", postController.getPostById);
 // get posts by a user

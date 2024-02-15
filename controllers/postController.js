@@ -59,8 +59,30 @@ exports.createPost = async (req, res) => {
 // get all posts
 exports.getAllPosts = async (req, res) => {
   try {
-    const posts = await Post.find();
-    res.status(200).json(posts);
+    let posts = await Post.find();
+
+    let postArray = [];
+    posts.map((post) => {
+      let postData = {
+        image: "",
+        _id: "",
+        title: "",
+        description: "",
+        createdBy: "",
+        likes: [""],
+        time: "",
+      };
+      postData.image = post.image.url;
+      postData._id = post._id;
+      postData.title = post.title;
+      postData.description = post.description;
+      postData.createdBy = post.createdBy;
+      postData.likes = post.likes;
+      postData.time = post.time;
+      postArray.push(postData);
+    });
+
+    res.status(200).json(postArray);
   } catch (error) {
     console.error("Error fetching posts:", error);
     res.status(500).json({ error: "Error fetching posts" });
