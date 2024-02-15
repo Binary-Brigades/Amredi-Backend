@@ -17,11 +17,11 @@ const postSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  // createdBy: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: "User",
-  //   required: true,
-  // },
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   likes: [
     {
       type: mongoose.Schema.Types.ObjectId,
