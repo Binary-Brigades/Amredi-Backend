@@ -12,6 +12,6 @@ exports.registerSchema = joi.object({
   confirm_password: joi.ref("password"),
   location: joi.object().keys({
     type: joi.string().required(),
-    coordinates: joi.array().items(joi.number().required())
-  })
+    coordinates: joi.array().items(joi.number().required()),
+  }),
 });
