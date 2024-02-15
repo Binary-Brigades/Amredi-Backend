@@ -104,7 +104,7 @@
 > **response**
 
 - status code: `200`
-- response body:
+- example of a response body:
 
 ```json
    "first_name": "maich",
@@ -138,6 +138,40 @@
    "first_name": "maich",
    "last_name": "magode",
    "email": "mainamaich@gmail.com",
+```
+
+## Connect 
+
+> **request**
+
+- url: amredi-backend.vercel.app/api/v1/user/connect
+- method: GET
+- headers:
+  ```yaml
+  Content-Type: application/json
+  Authorization: Bearer <token>
+
+  ```
+
+
+> **response**
+
+- status code: `200`
+- response body:
+
+```json
+   [
+  {
+    "first_name": "Antony",
+    "last_name": "Kariuki",
+    "location": "Nairobi, Kenya"
+  },
+  {
+    "first_name": "Antony",
+    "last_name": "Kariuki",
+    "location": "Nairobi, Kenya"
+  },
+   ]
 ```
 
 ## Create Post
