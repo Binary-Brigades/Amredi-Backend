@@ -385,7 +385,7 @@ authorization: `Bearer token`,
 
 ## Group
 
-### Get all Groups
+### Create a Groups
 
 > **request**
 
@@ -420,17 +420,23 @@ authorization: `Bearer token`,
 {
   "success": true,
   "data": {
-    "name": "Tuinuane",
+    "name": "Tunaweza",
     "createdBy": "65c9ef8c05e3670930dc9408",
-    "_id": "65cf7e8142a23914a1750d18",
-    "time": "2024-02-16T15:25:53.272Z",
-    "members": [],
-    "__v": 0
+    "_id": "65cf9be5a6da515118b61d80",
+    "time": "2024-02-16T17:31:17.500Z",
+    "members": [
+      {
+        "userId": "65c9ef8c05e3670930dc9408",
+        "role": "admin",
+        "_id": "65cf9be5a6da515118b61d82"
+      }
+    ],
+    "__v": 1
   }
 }
 ```
 
-### Create Group
+### Gete all Group
 
 > **request**
 
@@ -456,12 +462,32 @@ authorization: `Bearer token`,
   "success": true,
   "data": [
     {
-      "_id": "65cf7e8142a23914a1750d18",
+      "_id": "65cf9b9ca6da515118b61d79",
       "name": "Tuinuane",
       "createdBy": "65c9ef8c05e3670930dc9408",
-      "time": "2024-02-16T15:25:53.272Z",
-      "members": [],
-      "__v": 0
+      "time": "2024-02-16T17:30:04.195Z",
+      "members": [
+        {
+          "userId": "65c9ef8c05e3670930dc9408",
+          "role": "admin",
+          "_id": "65cf9b9ca6da515118b61d7b"
+        }
+      ],
+      "__v": 1
+    },
+    {
+      "_id": "65cf9be5a6da515118b61d80",
+      "name": "Tunaweza",
+      "createdBy": "65c9ef8c05e3670930dc9408",
+      "time": "2024-02-16T17:31:17.500Z",
+      "members": [
+        {
+          "userId": "65c9ef8c05e3670930dc9408",
+          "role": "admin",
+          "_id": "65cf9be5a6da515118b61d82"
+        }
+      ],
+      "__v": 1
     }
   ]
 }
