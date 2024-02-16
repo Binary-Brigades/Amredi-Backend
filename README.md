@@ -385,7 +385,7 @@ authorization: `Bearer token`,
 
 ## Group
 
-### Create a Groups
+### Create a Group
 
 > **request**
 
@@ -436,7 +436,7 @@ authorization: `Bearer token`,
 }
 ```
 
-### Gete all Group
+### Get all Group
 
 > **request**
 
@@ -490,5 +490,64 @@ authorization: `Bearer token`,
       "__v": 1
     }
   ]
+}
+```
+
+### Add a member to group
+
+> **request**
+
+- url: amredi-backend.vercel.app/api/v1/group/:groupId/add
+- method: POST
+
+* request headers:
+
+```
+
+Accept: "application/json",
+authorization: `Bearer token`,
+
+```
+
+- request params:
+
+```
+
+groupId:""
+
+```
+
+- request body:
+
+```
+
+{
+  "role": ""
+}
+
+```
+
+> **response**
+
+- status code: `200`
+- response body:
+
+```json
+{
+  "success": true,
+  "data": {
+    "name": "Tunaweza",
+    "createdBy": "65c9ef8c05e3670930dc9408",
+    "_id": "65cf9be5a6da515118b61d80",
+    "time": "2024-02-16T17:31:17.500Z",
+    "members": [
+      {
+        "userId": "65c9ef8c05e3670930dc9408",
+        "role": "admin",
+        "_id": "65cf9be5a6da515118b61d82"
+      }
+    ],
+    "__v": 1
+  }
 }
 ```
