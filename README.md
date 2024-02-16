@@ -319,10 +319,6 @@ message: "Post created successfully",
 
   ```
 
-  ```
-
-  ```
-
 > **response**
 
 - status code: `200`
@@ -431,5 +427,42 @@ authorization: `Bearer token`,
     "members": [],
     "__v": 0
   }
+}
+```
+
+### Create Group
+
+> **request**
+
+- url: amredi-backend.vercel.app/api/v1/group/getall
+- method: GET
+
+* request headers:
+
+```
+
+Accept: "application/json",
+authorization: `Bearer token`,
+
+```
+
+> **response**
+
+- status code: `200`
+- response body:
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "_id": "65cf7e8142a23914a1750d18",
+      "name": "Tuinuane",
+      "createdBy": "65c9ef8c05e3670930dc9408",
+      "time": "2024-02-16T15:25:53.272Z",
+      "members": [],
+      "__v": 0
+    }
+  ]
 }
 ```
