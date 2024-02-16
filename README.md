@@ -405,6 +405,16 @@ authorization: `Bearer token`,
 
 ```
 
+- request body:
+
+```
+
+{
+  "name": "Tuniuane"
+}
+
+```
+
 > **response**
 
 - status code: `201`
