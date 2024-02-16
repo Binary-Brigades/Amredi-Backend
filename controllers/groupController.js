@@ -1,10 +1,10 @@
 const Group = require("../models/groupModel");
-
+const { userModel } = require("../models/userModel");
 exports.createGroup = async (req, res) => {
   try {
     const { name } = req.body;
     const createdBy = req.payload.aud;
-    const checkUser = await User.findById(createdBy);
+    const checkUser = await userModel.findById(createdBy);
 
     if (!checkUser) {
       return res
@@ -21,6 +21,7 @@ exports.createGroup = async (req, res) => {
     const newGroup = await Group.create({ name, createdBy });
     res.status(201).json({ success: true, data: newGroup });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ success: false, error: error.message });
   }
 };
