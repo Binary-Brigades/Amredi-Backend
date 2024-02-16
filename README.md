@@ -140,19 +140,18 @@
    "email": "mainamaich@gmail.com",
 ```
 
-## Connect 
+## Connect
 
 > **request**
 
 - url: amredi-backend.vercel.app/api/v1/user/connect
 - method: GET
 - headers:
+
   ```yaml
   Content-Type: application/json
   Authorization: Bearer <token>
-
   ```
-
 
 > **response**
 
@@ -160,7 +159,7 @@
 - response body:
 
 ```json
-   [
+[
   {
     "first_name": "Antony",
     "last_name": "Kariuki",
@@ -170,8 +169,8 @@
     "first_name": "Antony",
     "last_name": "Kariuki",
     "location": "Nairobi, Kenya"
-  },
-   ]
+  }
+]
 ```
 
 ## Create Post
@@ -203,9 +202,9 @@
 - status code: `201`
 - response body:
 
-```
+```json
 message: "Post created successfully",
-json
+
    title,
    description,
    image: {
@@ -237,9 +236,8 @@ json
 - status code: `200`
 - response body:
 
-```
-json
-   [
+```json
+[
   {
     "image": {
       "publicId": "amredi/hg1znknlzy0jexgpiwvt",
@@ -290,8 +288,7 @@ json
 - status code: `200`
 - response body:
 
-```
-json
+```json
 {
   "image": {
     "publicId": "amredi/yh1j84aexj70ofqwnf7e",
@@ -305,7 +302,6 @@ json
   "time": "2024-02-13T13:55:30.637Z",
   "__v": 0
 }
-
 ```
 
 ### get posts of a given user
@@ -325,13 +321,14 @@ json
 
   ```
 
+  ```
+
 > **response**
 
 - status code: `200`
 - response body:
 
-```
-json
+```json
 [
   {
     "image": {
@@ -342,9 +339,7 @@ json
     "title": "hello",
     "description": "helloo",
     "createdBy": "65c9ef8c05e3670930dc9408",
-    "likes": [
-      "65c9ef8c05e3670930dc9408"
-    ],
+    "likes": ["65c9ef8c05e3670930dc9408"],
     "time": "2024-02-13T13:51:53.358Z",
     "__v": 2
   },
@@ -362,7 +357,6 @@ json
     "__v": 0
   }
 ]
-
 ```
 
 ## Like a Post
@@ -386,22 +380,21 @@ authorization: `Bearer token`,
 - status code: `201`
 - response body:
 
-```
-
-json
+```json
 {
-"message": "Post liked successfully",
-"numberOfLikes": 1
+  "message": "Post liked successfully",
+  "numberOfLikes": 1
 }
-
 ```
 
-## Get All Likes From A Post
+## Group
+
+### Create Group
 
 > **request**
 
-- url: amredi-backend.vercel.app/api/v1/post/:postId/getlikes
-- method: GET
+- url: amredi-backend.vercel.app/api/v1/group/create
+- method: POST
 
 * request headers:
 
@@ -414,17 +407,19 @@ authorization: `Bearer token`,
 
 > **response**
 
-- status code: `200`
+- status code: `201`
 - response body:
 
-```
-
-json
+```json
 {
-  "postLikes": {
-  "postId": "65cb73f93a4fa55962650101",
-  "numberOfLikes": 1
+  "success": true,
+  "data": {
+    "name": "Tuinuane",
+    "createdBy": "65c9ef8c05e3670930dc9408",
+    "_id": "65cf7e8142a23914a1750d18",
+    "time": "2024-02-16T15:25:53.272Z",
+    "members": [],
+    "__v": 0
+  }
 }
-}
-
 ```
