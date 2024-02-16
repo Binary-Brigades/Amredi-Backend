@@ -1,6 +1,7 @@
 const cloudinary = require("cloudinary").v2;
 const { Post } = require("../models/postModel");
 const { userModel } = require("../models/userModel");
+const { ObjectId } = require("mongodb");
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -17,7 +18,7 @@ exports.createPost = async (req, res) => {
     }
     // Query the database to retrieve user information
     const user = await userModel.findById(req.payload.aud);
-    console.log(user);
+    // console.log(user);
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
@@ -59,10 +60,12 @@ exports.createPost = async (req, res) => {
 // get all posts
 exports.getAllPosts = async (req, res) => {
   try {
+    // Retrieve all posts from the database
     let posts = await Post.find();
-
     let postArray = [];
-    posts.map((post) => {
+
+    // Loop through each post to populate createdBy with user's name
+    for (let post of posts) {
       let postData = {
         image: "",
         _id: "",
@@ -72,16 +75,25 @@ exports.getAllPosts = async (req, res) => {
         likes: [""],
         time: "",
       };
+      // Find the user who created the post
+      const user = await userModel.findById(post.createdBy);
+
+      if (!user) {
+        console.log("User not found");
+        return res.status(500).json({ error: "User not found" });
+      }
+
       postData.image = post.image.url;
       postData._id = post._id;
       postData.title = post.title;
       postData.description = post.description;
-      postData.createdBy = post.createdBy;
+      postData.createdBy = `${user.first_name} ${user.last_name}`;
       postData.likes = post.likes;
       postData.time = post.time;
       postArray.push(postData);
-    });
-
+    }
+    console.log(postArray);
+    // Send the modified posts array as response
     res.status(200).json(postArray);
   } catch (error) {
     console.error("Error fetching posts:", error);
