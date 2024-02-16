@@ -385,7 +385,7 @@ authorization: `Bearer token`,
 
 ## Group
 
-### Create Group
+### Get all Groups
 
 > **request**
 
