@@ -203,13 +203,13 @@
 - response body:
 
 ```json
-message: "Post created successfully",
 
+   message: "Post created successfully",
    title,
    description,
    image: {
-        publicId: result.public_id,
-        url: result.secure_url, -> live link from cloudinary
+        "publicId": "result.public_id",
+        "url": "result.secure_url", //-> live link from cloudinary
       },
    createdBy: user._id,
 ```

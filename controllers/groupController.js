@@ -67,23 +67,3 @@ exports.getGroups = async (req, res) => {
   }
 };
 
-// exports.addMemberToGroup = async (req, res) => {
-//   try {
-//     const groupId = req.params.groupId;
-//     const memberId = req.payload.aud;
-//     const { role } = req.body;
-
-//     // If role is not provided, default to "member"
-//     const newMember = { userId: memberId, role: role || "member" };
-
-//     const group = await Group.findByIdAndUpdate(
-//       groupId,
-//       { $push: { members: newMember } },
-//       { new: true }
-//     );
-
-//     res.status(200).json({ success: true, data: group });
-//   } catch (error) {
-//     res.status(500).json({ success: false, error: error.message });
-//   }
-// };
