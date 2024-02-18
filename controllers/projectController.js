@@ -1,6 +1,6 @@
 const cloudinary = require("cloudinary").v2;
-const { Project } = require("../models/projectModel");
-const { Group } = require("../models/groupModel");
+const Project = require("../models/projectModel");
+const Group = require("../models/groupModel");
 const { userModel } = require("../models/userModel");
 
 cloudinary.config({

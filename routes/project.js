@@ -9,6 +9,4 @@ projectRouter.post(
   projectController.createProject
 );
 
-
-
 module.exports = { projectRouter };
