@@ -203,13 +203,13 @@
 - response body:
 
 ```json
-message: "Post created successfully",
 
+   message: "Post created successfully",
    title,
    description,
    image: {
-        publicId: result.public_id,
-        url: result.secure_url, -> live link from cloudinary
+        "publicId": "result.public_id",
+        "url": "result.secure_url", //-> live link from cloudinary
       },
    createdBy: user._id,
 ```
@@ -549,5 +549,74 @@ groupId:""
     ],
     "__v": 1
   }
+}
+```
+
+## Projects
+
+### create a project
+
+> **request**
+
+- url: amredi-backend.vercel.app/project/group/:group/create
+- method: POST
+
+* request headers:
+
+```
+
+Accept: "application/json",
+authorization: `Bearer token`,
+
+```
+
+- request params:
+
+```
+
+groupId:""
+
+```
+
+- request body:
+
+```
+
+{
+  "name": "name",
+  "description": "description",
+  "category": "category",
+  "images": imageFiles[],
+}
+
+```
+
+> **response**
+
+- status code: `201`
+- response body:
+
+```json
+{
+  "_id": {
+    "$oid": "65d25c7785666b83f7571499"
+  },
+  "name": "Tailoring",
+  "description": "Tailoring description",
+  "category": "Tailoring",
+  "createdBy": {
+    "$oid": "65c9ef8c05e3670930dc9408"
+  },
+  "groupId": {
+    "$oid": "65cf9b9ca6da515118b61d79"
+  },
+  "imageUrls": [
+    "https://res.cloudinary.com/dlio7cpjo/image/upload/v1708285046/amrediprojects/f2h5butisewbtvjtj1b0.jpg",
+    "https://res.cloudinary.com/dlio7cpjo/image/upload/v1708285047/amrediprojects/pl7qyox0md5hurwlcglc.jpg"
+  ],
+  "time": {
+    "$date": "2024-02-18T19:37:27.933Z"
+  },
+  "__v": 0
 }
 ```
