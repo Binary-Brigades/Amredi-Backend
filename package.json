@@ -21,7 +21,7 @@
     "html-to-text": "^9.0.5",
     "http-errors": "^2.0.0",
     "http-status-codes": "^2.3.0",
-    "joi": "^17.12.1",
+    "joi": "^17.12.2",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.3.0",
     "mongoose": "^8.1.3",
