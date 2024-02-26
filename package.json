@@ -16,7 +16,7 @@
     "cloudinary": "^2.0.1",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
-    "dotenv": "^16.4.3",
+    "dotenv": "^16.4.4",
     "express": "^4.18.2",
     "html-to-text": "^9.0.5",
     "http-errors": "^2.0.0",
