@@ -1,0 +1,55 @@
+version: "3.9"
+
+services:
+  # The Amredi app service
+  amredi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    env_file:
+      - ./.env
+    image: amredi
+    container_name: amredi-cont
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      mongoDbUrl: mongodb://${MONGODB_USER}:${MONGODB_PASSWORD}@mongodb:27017
+      mongoDbName: Test
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+  # Mongodb database service
+  mongodb:
+    restart: unless-stopped
+    image: mongo
+    container_name: mongo-cont
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
+    volumes: amredi-data:/data/db
+
+  mongo-express:
+    restart: always
+    image: mongo-express
+    container_name: mongo-express-cont
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGODB_USER}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGODB_PASSWORD}
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_SERVER: mongodb
+    depends_on:
+      mongodb:
+        condition: service_healthy
+
+# storing data in named volumes outside the container  
+volumes:
+  amredi-data: {}
