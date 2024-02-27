@@ -35,6 +35,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
     volumes: amredi-data:/data/db
 
+  # Mongo-express service for database viewing
   mongo-express:
     restart: always
     image: mongo-express
