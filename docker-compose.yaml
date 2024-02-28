@@ -17,8 +17,7 @@ services:
       mongoDbUrl: mongodb://${MONGODB_USER}:${MONGODB_PASSWORD}@mongodb:27017
       mongoDbName: Test
     depends_on:
-      mongodb:
-        condition: service_healthy
+     - mongodb
     volumes:
       - .:/app
       - /app/node_modules
@@ -33,7 +32,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USER}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
-    volumes: amredi-data:/data/db
+    volumes:
+      - amredi-data:/data/db
 
   # Mongo-express service for database viewing
   mongo-express:
@@ -48,9 +48,8 @@ services:
       ME_CONFIG_MONGODB_PORT: 27017
       ME_CONFIG_MONGODB_SERVER: mongodb
     depends_on:
-      mongodb:
-        condition: service_healthy
+     - mongodb
 
-# storing data in named volumes outside the container  
+# storing data in named volumes outside the container
 volumes:
   amredi-data: {}
