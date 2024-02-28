@@ -140,19 +140,18 @@
    "email": "mainamaich@gmail.com",
 ```
 
-## Connect 
+## Connect
 
 > **request**
 
 - url: amredi-backend.vercel.app/api/v1/user/connect
 - method: GET
 - headers:
+
   ```yaml
   Content-Type: application/json
   Authorization: Bearer <token>
-
   ```
-
 
 > **response**
 
@@ -160,7 +159,7 @@
 - response body:
 
 ```json
-   [
+[
   {
     "first_name": "Antony",
     "last_name": "Kariuki",
@@ -170,8 +169,8 @@
     "first_name": "Antony",
     "last_name": "Kariuki",
     "location": "Nairobi, Kenya"
-  },
-   ]
+  }
+]
 ```
 
 ## Create Post
@@ -203,14 +202,14 @@
 - status code: `201`
 - response body:
 
-```
-message: "Post created successfully",
-json
+```json
+
+   message: "Post created successfully",
    title,
    description,
    image: {
-        publicId: result.public_id,
-        url: result.secure_url, -> live link from cloudinary
+        "publicId": "result.public_id",
+        "url": "result.secure_url", //-> live link from cloudinary
       },
    createdBy: user._id,
 ```
@@ -237,9 +236,8 @@ json
 - status code: `200`
 - response body:
 
-```
-json
-   [
+```json
+[
   {
     "image": {
       "publicId": "amredi/hg1znknlzy0jexgpiwvt",
@@ -290,8 +288,7 @@ json
 - status code: `200`
 - response body:
 
-```
-json
+```json
 {
   "image": {
     "publicId": "amredi/yh1j84aexj70ofqwnf7e",
@@ -305,7 +302,6 @@ json
   "time": "2024-02-13T13:55:30.637Z",
   "__v": 0
 }
-
 ```
 
 ### get posts of a given user
@@ -323,15 +319,12 @@ json
 
   ```
 
-  ```
-
 > **response**
 
 - status code: `200`
 - response body:
 
-```
-json
+```json
 [
   {
     "image": {
@@ -342,9 +335,7 @@ json
     "title": "hello",
     "description": "helloo",
     "createdBy": "65c9ef8c05e3670930dc9408",
-    "likes": [
-      "65c9ef8c05e3670930dc9408"
-    ],
+    "likes": ["65c9ef8c05e3670930dc9408"],
     "time": "2024-02-13T13:51:53.358Z",
     "__v": 2
   },
@@ -362,7 +353,6 @@ json
     "__v": 0
   }
 ]
-
 ```
 
 ## Like a Post
@@ -386,21 +376,71 @@ authorization: `Bearer token`,
 - status code: `201`
 - response body:
 
+```json
+{
+  "message": "Post liked successfully",
+  "numberOfLikes": 1
+}
 ```
 
-json
+## Group
+
+### Create a Group
+
+> **request**
+
+- url: amredi-backend.vercel.app/api/v1/group/create
+- method: POST
+
+* request headers:
+
+```
+
+Accept: "application/json",
+authorization: `Bearer token`,
+
+```
+
+- request body:
+
+```
+
 {
-"message": "Post liked successfully",
-"numberOfLikes": 1
+  "name": "Tuniuane"
 }
 
 ```
 
-## Get All Likes From A Post
+> **response**
+
+- status code: `201`
+- response body:
+
+```json
+{
+  "success": true,
+  "data": {
+    "name": "Tunaweza",
+    "createdBy": "65c9ef8c05e3670930dc9408",
+    "_id": "65cf9be5a6da515118b61d80",
+    "time": "2024-02-16T17:31:17.500Z",
+    "members": [
+      {
+        "userId": "65c9ef8c05e3670930dc9408",
+        "role": "admin",
+        "_id": "65cf9be5a6da515118b61d82"
+      }
+    ],
+    "__v": 1
+  }
+}
+```
+
+### Get all Group
 
 > **request**
 
-- url: amredi-backend.vercel.app/api/v1/post/:postId/getlikes
+- url: amredi-backend.vercel.app/api/v1/group/getall
 - method: GET
 
 * request headers:
@@ -417,14 +457,166 @@ authorization: `Bearer token`,
 - status code: `200`
 - response body:
 
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "_id": "65cf9b9ca6da515118b61d79",
+      "name": "Tuinuane",
+      "createdBy": "65c9ef8c05e3670930dc9408",
+      "time": "2024-02-16T17:30:04.195Z",
+      "members": [
+        {
+          "userId": "65c9ef8c05e3670930dc9408",
+          "role": "admin",
+          "_id": "65cf9b9ca6da515118b61d7b"
+        }
+      ],
+      "__v": 1
+    },
+    {
+      "_id": "65cf9be5a6da515118b61d80",
+      "name": "Tunaweza",
+      "createdBy": "65c9ef8c05e3670930dc9408",
+      "time": "2024-02-16T17:31:17.500Z",
+      "members": [
+        {
+          "userId": "65c9ef8c05e3670930dc9408",
+          "role": "admin",
+          "_id": "65cf9be5a6da515118b61d82"
+        }
+      ],
+      "__v": 1
+    }
+  ]
+}
 ```
 
-json
+### Add a member to group
+
+> **request**
+
+- url: amredi-backend.vercel.app/api/v1/group/:groupId/add
+- method: POST
+
+* request headers:
+
+```
+
+Accept: "application/json",
+authorization: `Bearer token`,
+
+```
+
+- request params:
+
+```
+
+groupId:""
+
+```
+
+- request body:
+
+```
+
 {
-  "postLikes": {
-  "postId": "65cb73f93a4fa55962650101",
-  "numberOfLikes": 1
-}
+  "role": ""
 }
 
+```
+
+> **response**
+
+- status code: `200`
+- response body:
+
+```json
+{
+  "success": true,
+  "data": {
+    "name": "Tunaweza",
+    "createdBy": "65c9ef8c05e3670930dc9408",
+    "_id": "65cf9be5a6da515118b61d80",
+    "time": "2024-02-16T17:31:17.500Z",
+    "members": [
+      {
+        "userId": "65c9ef8c05e3670930dc9408",
+        "role": "admin",
+        "_id": "65cf9be5a6da515118b61d82"
+      }
+    ],
+    "__v": 1
+  }
+}
+```
+
+## Projects
+
+### create a project
+
+> **request**
+
+- url: amredi-backend.vercel.app/project/group/:group/create
+- method: POST
+
+* request headers:
+
+```
+
+Accept: "application/json",
+authorization: `Bearer token`,
+
+```
+
+- request params:
+
+```
+
+groupId:""
+
+```
+
+- request body:
+
+```
+
+{
+  "name": "name",
+  "description": "description",
+  "category": "category",
+  "images": imageFiles[],
+}
+
+```
+
+> **response**
+
+- status code: `201`
+- response body:
+
+```json
+{
+  "_id": {
+    "$oid": "65d25c7785666b83f7571499"
+  },
+  "name": "Tailoring",
+  "description": "Tailoring description",
+  "category": "Tailoring",
+  "createdBy": {
+    "$oid": "65c9ef8c05e3670930dc9408"
+  },
+  "groupId": {
+    "$oid": "65cf9b9ca6da515118b61d79"
+  },
+  "imageUrls": [
+    "https://res.cloudinary.com/dlio7cpjo/image/upload/v1708285046/amrediprojects/f2h5butisewbtvjtj1b0.jpg",
+    "https://res.cloudinary.com/dlio7cpjo/image/upload/v1708285047/amrediprojects/pl7qyox0md5hurwlcglc.jpg"
+  ],
+  "time": {
+    "$date": "2024-02-18T19:37:27.933Z"
+  },
+  "__v": 0
+}
 ```

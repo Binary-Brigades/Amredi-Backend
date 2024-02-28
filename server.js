@@ -6,6 +6,8 @@ const createError = require("http-errors");
 const { authRouter } = require("./routes/auth");
 const { userRouter } = require("./routes/user");
 const { postRouter } = require("./routes/post");
+const { groupRouter } = require("./routes/group");
+const { projectRouter } = require("./routes/project");
 require("./helpers/mongoDBHelper");
 const multer = require("multer");
 const upload = multer();
@@ -28,6 +30,8 @@ app.get("/", async (req, res) => {
 app.use("/api/v1", authRouter);
 app.use("/api/v1", userRouter);
 app.use("/api/v1", postRouter);
+app.use("/api/v1", groupRouter);
+app.use("/api/v1", projectRouter);
 
 // error handling
 app.use(async (req, res, next) => {
