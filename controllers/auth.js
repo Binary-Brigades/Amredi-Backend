@@ -10,6 +10,7 @@ exports.Register = async (req, res, next) => {
   try {
     const data = req.body;
     const regex = /^\+\d{1,3}\d{3,}$/;
+    data.location = JSON.parse(data.location)
     const result = registerSchema.validate(data);
     if (result.error) {
       const error = result.error.details[0].message;
